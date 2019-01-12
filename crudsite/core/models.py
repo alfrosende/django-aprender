@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 
 class Cliente(models.Model):
@@ -34,7 +35,7 @@ class Visita(models.Model):
     cliente = models.ForeignKey(Cliente, verbose_name="Cliente", on_delete=models.CASCADE)
     fecha = models.DateTimeField(verbose_name="Fecha de visita")
     direccion = models.CharField(max_length=200, verbose_name="Direccion")
-    notas = models.TextField(verbose_name="Notas")
+    notas = RichTextField(verbose_name="Notas")
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
     updated = models.DateTimeField(auto_now=True, verbose_name="Ultima edicion")
@@ -83,5 +84,15 @@ Tipos para relaciones (leer especificaciones de la documentacion):
     - ForeignKey
     - ManyToManyField
     - OneToOneField
+
+
+CkEditor:
+    Para instalar el ckeditor --> pip install ckeditor
+    Luego hay que agregarlo en el settings.py en las INSTALED_APPS
+    Importar from ckeditor.fields import RichTextField y sustituir el models.TextField por RichTextField
+    Finalmente en el template, el template tag que tenia la textarea mostrando el texto enriquecido y debia decir
+    |linebreak cambiarlo por |safe, deberia verse asi --> {{page.content|safe}}
+
+    Si se utilizan vistas basadas en clases ...
 
 '''
