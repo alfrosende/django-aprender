@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Eliminacion de cliente{% endblock %}
+
+{% block content %}
+        <div class="row mt-3 ml-3">
+            <div class="col-md-9">
+                <div>
+                    <form method="post">
+                            {% csrf_token %}
+                                <p>Seguro desea borrar el cliente <b> "{{ object }}" </b>?</p>
+                                <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

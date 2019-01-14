@@ -6,6 +6,11 @@ class ClienteAdmin(admin.ModelAdmin):
 
 class VisitaAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
+    # Inyectamos nuestro fichero css para que el ckeditor sea responsivo
+    class Media:
+        css = {
+            'all': ('core/css/custom_ckeditor.css',)
+            }
 
 
 

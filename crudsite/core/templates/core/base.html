@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static 'core/vendor/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="{% static 'core/vendor/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Ckeditor -->
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+    <link href="{% static 'core/css/custom_ckeditor.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navegacion -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link {% if request.path == '/' %} active {% endif %}" href="{% url 'clientes' %}">Clientes <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Visitas</a>
+                <a class="nav-item nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+    
+    <!-- Pie de pagina -->
+    <footer>
+
+    </footer>
+    <!-- Bootstrap -->
+    <script src="{% static 'core/vendor/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'core/vendor/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'core/vendor/popper.min.js' %}"></script>
+</body>
+</html>

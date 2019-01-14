@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Alta de cliente{% endblock %}
+
+{% block content %}
+        <div class="row mt-3 ml-3 mb-5">
+            <div class="col-md-9">
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div>
+                            <input type="submit" class="btn btn-primary btn-block" value="Crear cliente">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

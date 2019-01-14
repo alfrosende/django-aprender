@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+    <h1>Clientes</h1>
+    <br>
+    <a class="btn btn-primary" href="{% url 'crear_cliente' %}">Alta de nuevo cliente</a>
+    <br>
+    <br>
+    <br>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono 1</th>
+                <th scope="col">Telefono 2</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in object_list %}
+                <tr>
+                    <td>{{cliente.id}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.direccion}}</td>
+                    <td>{{cliente.telefono1}}</td>
+                    <td>{{cliente.telefono2}}</td>
+                    <td><a class="btn btn-primary" href="{% url 'cliente' cliente.id %}">Ver</a></td>
+                    <td><a class="btn btn-info" href="{% url 'modificar_cliente' cliente.id %}">Editar</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'eliminar_cliente' cliente.id %}">Eliminar</a></td>
+                    <td><a class="btn btn-secondary" href="{% url 'cliente' cliente.id %}">Visitas</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
