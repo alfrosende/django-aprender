@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'core',
+    'django_filters',
+    'bootstrapform',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

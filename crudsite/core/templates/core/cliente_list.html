@@ -1,6 +1,8 @@
 {% extends 'core/base.html' %}
 
 {% load static %}
+{% load bootstrap %}
+{% load widget_tweaks %}
 
 {% block title %}Clientes{% endblock %}
 
@@ -10,6 +12,31 @@
     <a class="btn btn-primary" href="{% url 'crear_cliente' %}">Alta de nuevo cliente</a>
     <br>
     <br>
+    <!--
+    <form action="" method="get">
+        {{ filter.form.as_table }}
+        <input type="submit" />
+    </form>
+    -->
+    <form method="GET">
+        <div class="well">
+            <div class="row">
+                <div class="form-group col-sm-4 col-md-3">
+                    {{ filter.form.nombre.label_tag }}
+                    {% render_field filter.form.nombre class="form-control" %}
+                </div>
+                <div class="form-group col-sm-4 col-md-3">
+                    {{ filter.form.direccion.label_tag }}
+                    {% render_field filter.form.direccion class="form-control" %}
+                </div>
+                <div class="form-group col-sm-4 col-md-3">
+                    {{ filter.form.tipo_cliente.label_tag }}
+                    {% render_field filter.form.tipo_cliente class="form-control" %}
+                </div>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Filtrar</button>
+            </div>
+        </div>
+    </form>
     <br>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -26,7 +53,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for cliente in object_list %}
+            {% for cliente in filter.qs %}
                 <tr>
                     <td>{{cliente.id}}</td>
                     <td>{{cliente.nombre}}</td>

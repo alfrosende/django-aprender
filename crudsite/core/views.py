@@ -4,7 +4,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Cliente 
-from .forms import CrearForm
+from .forms import CrearForm, ClientesFilter
+from django_filters.views import FilterView
 
 '''
     Las vistas basadas en clases tienen varios beneficios como ...
@@ -19,6 +20,16 @@ class AboutView(TemplateView):
         context['mivariable'] = "Hola variableeeee"
         return context
 
+class ClientesView_OTRAFORMA_NODARBOLA(FilterView):
+    model = Cliente
+    context_object_name = 'clientes'
+    filterset_class = ClientesFilter
+    template_name = "core/cliente_list.html"
+
+    def get_queryset(self):
+        queryset = self.model.objects.all()
+        return queryset
+
 class ClientesView(ListView):
     '''
      No es necesario el template si se le pone como nombre al mismo nombreModeloMinuscula_list.html
@@ -26,6 +37,12 @@ class ClientesView(ListView):
      u object_list
     '''
     model = Cliente
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ClientesFilter(self.request.GET, queryset=self.get_queryset()) 
+        return context
+    
 
 class ClienteDetailView(DetailView):
     '''

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Cliente
+import django_filters
 
 class CrearForm(forms.ModelForm):
 
@@ -15,3 +16,13 @@ class CrearForm(forms.ModelForm):
             'cedula_identidad': forms.NumberInput(attrs={'class':'form-control'}),
             'rut': forms.NumberInput(attrs={'class':'form-control'}),
         }
+
+class ClientesFilter(django_filters.FilterSet):
+    class Meta:
+        model = Cliente
+        fields = ['nombre','direccion','tipo_cliente']
+
+    '''
+        Para hacer uso de django_filters es necesario pip install django-filters
+        En el template para poder modelar se usa widget_tweaks que se instala pip install django-widget-tweaks
+    '''
