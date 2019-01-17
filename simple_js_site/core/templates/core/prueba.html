@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prueba</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static 'core/vendor/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="{% static 'core/vendor/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+</head>
+<body>
+    <h1>Prueba de llamada asincrona</h1>
+    <input type="text" class=form-control id="cliente" placeholder="Ingrese id de cliente">
+    <input type="text" class="form-control" disabled id="nombre">
+    <button type="button" class="btn btn-primary btn-block" id="verificar">Verificar existencia</button>
+    <button type="button" class="btn btn-primary btn-block" id="cargar" disabled>Cargar nombre</button>
+
+    <script>
+        // levanto los botones en variables
+        var veri = document.getElementById("verificar");
+        var carga = document.getElementById("cargar");
+        var valor = document.getElementById("cliente").value;
+        // agrego evento click al boton verificar
+        veri.addEventListener("click", function(){
+            const url = '{% url "resp" 1 %}';
+
+            fetch(url, {'credentials':'include'}).then(response => response.json()).then(function(data){
+                alert(data.verificado+"//"+data.nombre);
+            })
+        })
+    </script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'core/vendor/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'core/vendor/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'core/vendor/popper.min.js' %}"></script>
+</body>
+</html>
