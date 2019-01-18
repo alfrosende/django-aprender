@@ -1,0 +1,21 @@
+  <h2>Oxford Dictionary</h2>
+
+  <form method="get">
+    {{ form.as_p }}
+    <button type="submit">search</button>
+  </form>
+
+  {% if search_result %}
+    <hr>
+    <p>1--->{{search_result}}</p>
+    <p>2--->{{search_result.success}}</p>
+    <p>3--->{{search_result.elraw}}</p>
+    <p>4--->{{search_result.elcontent}}</p>
+    <p>5--->{{search_result.elhtml}}</p>
+    {% if search_result.success %}
+      
+    {% else %}
+      <p><em>{{ search_result.message }}</em></p>
+    {% endif %}
+  {% endif %}
+
