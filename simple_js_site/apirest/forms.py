@@ -34,7 +34,7 @@ class ApiLoginForm(forms.Form):
             #print(response.text)
         else:
             result['success'] = False
-            if response.status_code == 200:
+            if response.status_code == 404:
                 print('Entre por el 404')
                 result['message'] = 'Error 404'
             else:
