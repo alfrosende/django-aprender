@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listado de clientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expediente in object_list %}
+                <tr>
+                    <td>{{expediente.id}}</td>
+                    <td>{{expediente.titulo}}</td>
+                    <td>{{expediente.estado}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <a href="{% url 'crear' %}">Alta de nuevo expediente</a>
+</body>
+</html>
