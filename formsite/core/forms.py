@@ -1,9 +1,10 @@
 from django import forms
 from .models import Expediente, Estado
+from .persistencia import *
 
 class CrearForm(forms.Form):
-    estados = Estado.objects.all()
-    abreviada = forms.CharField(required = True)
+    #estados = Estado.objects.all()
+    estados = getAllEstados() 
     titulo = forms.CharField(required=True)
     concepto = forms.CharField(required=True, widget=forms.Textarea)
     estado = forms.ModelChoiceField(required=True, queryset=estados)

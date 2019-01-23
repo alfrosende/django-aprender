@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    
+    {% if 'ok' in request.GET %}
+        <p>Expediente creado con exito</p>
+    {% endif %}
+        
     <h1>Listado de clientes</h1>
     <table>
         <thead>
